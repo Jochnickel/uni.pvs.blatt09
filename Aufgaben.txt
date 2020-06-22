@@ -118,8 +118,21 @@ VALUES ( 28, 'Elsholz und Spann GmbH', 'Ulm', 2)
 
 Aufgabe 2.2
 
+INSERT INTO liefert (liefnr, teilenr, farbe, preis)
+SELECT liefnr,'TL134',farbe,3*preis
+FROM liefert
+WHERE teilenr='K18'
+
 
 Aufgabe 2.3
+
+DELETE FROM liefert
+WHERE liefnr=ANY(
+  select liefnr
+  from liefert
+  group by liefnr
+  having count(liefnr)<5
+)
 
 
 Aufgabe 2.4
