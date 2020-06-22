@@ -147,7 +147,7 @@ WHERE persnr= ANY(
 Aufgabe 2.5
 
 UPDATE auftragspos
-SET farbe=(SELECT farbcode FROM farbcodes WHERE farbetext='rot')
+SET farbe=1
 WHERE (auftrnr,pos)= ANY(
 SELECT auftrnr,pos
 FROM auftragspos
@@ -155,7 +155,5 @@ JOIN auftraege
 ON auftragspos.auftrnr=auftraege.auftrnr
 JOIN kunden
 ON kunden.kdnr = auftraege.kdnr
-JOIN Farbcodes
-ON auftragspos.farbe = farbcodes.farbcode
-WHERE kdname='Babel' and Farbetext='blau'
+WHERE kdname='Babel' AND Farbe=2
 )
