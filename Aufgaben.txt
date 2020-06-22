@@ -1,0 +1,50 @@
+Aufgabe 1.1
+
+SELECT teilenr, farbe, liefname, bewertung
+FROM liefert 
+JOIN lieferanten ON lieferanten.liefnr = liefert.liefnr
+WHERE Bewertung>0 AND liefstadt='Ulm'
+
+
+Aufgabe 1.2
+
+SELECT Anzahl, Farbe, Auftrnr, Teilenr FROM auftragspos 
+JOIN auftraege ON auftraege.auftrnr=auftragspos.auftrnr
+JOIN kunden ON kunden.kdnr=auftraege.kdnr
+WHERE kdname='Dehling'
+
+
+Aufgabe 1.3
+
+// Bestellungen von Kunden sind Aufträge?
+
+SELECT kdnr FROM auftraege
+GROUP BY kdnr
+HAVING COUNT(KDNR)>1
+
+Aufgabe 1.4
+
+SELECT AVG(gehalt) as durchschnittsgehalt FROM mitarbeiter
+JOIN Abteilungen ON Abteilungen.abtnr=mitarbeiter.abtnr
+WHERE abtname='Lager'
+
+
+Aufgabe 1.5
+
+
+
+Aufgabe 1.6
+
+
+
+Aufgabe 1.7
+
+
+
+Aufgabe 1.8
+
+
+
+Aufgabe 1.9
+
+
