@@ -62,7 +62,21 @@ Aufgabe 1.7
 // Das Ergebnis ist nicht eindeutig, wenn ein Lieferant und ein Kunde in der gleichen Stadt den gleichen Namen haben.
 // Es wäre daher zu empfehlen, beide in einer Tabelle "Firmen" zusammenzufassen.
 
+SELECT Liefname
+FROM Lieferanten
+WHERE NOT Liefname = ANY(
+  SELECT Liefname FROM Lieferanten
+  JOIN kunden
+  ON kunden.kdstadt=lieferanten.liefstadt AND kunden.kdname=lieferanten.liefname
+)
 
+// mit EXCEPT
+
+SELECT Liefname,Liefstadt
+FROM Lieferanten
+EXCEPT
+SELECT kdname, kdstadt
+FROM Kunden
 
 Aufgabe 1.8
 
