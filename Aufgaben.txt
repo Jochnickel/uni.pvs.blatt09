@@ -102,4 +102,8 @@ WHERE teilenr='K18'
 
 Aufgabe 1.9
 
-
+SELECT *
+FROM AUFTRAGSPOS
+FULL JOIN teile
+ON teile.teilenr=AUFTRAGSPOS.teilenr AND teile.farbe=AUFTRAGSPOS.farbe
+WHERE auftrnr IS NULL
