@@ -34,21 +34,31 @@ Aufgabe 1.5
 
 SELECT *
 FROM mitarbeiter
-WHERE gehalt = ANY(
-  SELECT MAX(gehalt)
-  FROM mitarbeiter
-  WHERE NOT persnr = ANY(
-    SELECT mgrpersnr
-    FROM abteilungen
-  )
+WHERE gehalt = (
+    SELECT MAX(gehalt)
+    FROM mitarbeiter
+    WHERE NOT persnr = ANY(
+        SELECT mgrpersnr
+        FROM abteilungen
+    )
 )
 
 
 Aufgabe 1.6
 
+SELECT auftrnr, sum(preis*anzahl) AS preis
+FROM AUFTRAGSPOS
+
+JOIN preisliste
+ON auftragspos.teilenr=preisliste.teilenr AND auftragspos.farbe=preisliste.farbe
+
+GROUP BY auftrnr
+
+ORDER BY preis ASC
 
 
 Aufgabe 1.7
+
 
 
 
