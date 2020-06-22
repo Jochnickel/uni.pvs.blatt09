@@ -32,6 +32,17 @@ WHERE abtname='Lager'
 Aufgabe 1.5
 
 
+SELECT *
+FROM mitarbeiter
+WHERE gehalt = ANY(
+  SELECT MAX(gehalt)
+  FROM mitarbeiter
+  WHERE NOT persnr = ANY(
+    SELECT mgrpersnr
+    FROM abteilungen
+  )
+)
+
 
 Aufgabe 1.6
 
