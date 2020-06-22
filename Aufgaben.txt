@@ -65,21 +65,39 @@ Aufgabe 1.7
 SELECT Liefname
 FROM Lieferanten
 WHERE NOT Liefname = ANY(
-  SELECT Liefname FROM Lieferanten
+  SELECT Liefname
+  FROM Lieferanten
   JOIN kunden
   ON kunden.kdstadt=lieferanten.liefstadt AND kunden.kdname=lieferanten.liefname
 )
 
 // mit EXCEPT
 
-SELECT Liefname,Liefstadt
-FROM Lieferanten
-EXCEPT
-SELECT kdname, kdstadt
-FROM Kunden
+SELECT Liefname
+FROM(
+  SELECT Liefname,Liefstadt
+  FROM Lieferanten
+  EXCEPT
+  SELECT kdname, kdstadt
+  FROM Kunden
+)
+
 
 Aufgabe 1.8
 
+SELECT liefnr
+FROM liefert
+WHERE teilenr='K14'
+
+INTERSECT
+SELECT liefnr
+FROM liefert
+WHERE teilenr='K16'
+
+INTERSECT
+SELECT liefnr
+FROM liefert
+WHERE teilenr='K18'
 
 
 Aufgabe 1.9
