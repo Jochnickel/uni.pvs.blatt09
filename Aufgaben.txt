@@ -137,6 +137,25 @@ WHERE liefnr=ANY(
 
 Aufgabe 2.4
 
+UPDATE mitarbeiter
+set gehalt = mitarbeiter.gehalt*0.8
+WHERE persnr= ANY(
+  SELECT chefpersnr
+  FROM Mitarbeiter
+) 
+
 Aufgabe 2.5
 
-
+UPDATE auftragspos
+SET farbe=(SELECT farbcode FROM farbcodes WHERE farbetext='rot')
+WHERE (auftrnr,pos)= ANY(
+SELECT auftrnr,pos
+FROM auftragspos
+JOIN auftraege
+ON auftragspos.auftrnr=auftraege.auftrnr
+JOIN kunden
+ON kunden.kdnr = auftraege.kdnr
+JOIN Farbcodes
+ON auftragspos.farbe = farbcodes.farbcode
+WHERE kdname='Babel' and Farbetext='blau'
+)
